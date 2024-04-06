@@ -92,8 +92,8 @@ function FilterSection({setBathCount,setBedCount,setParkingCount,setHomeType}) {
         <SelectItem value="All">
                 All
             </SelectItem>
-            <SelectItem value="Single Family Home">
-               Single Family Home
+            <SelectItem value="Single Family House">
+               Single Family House
             </SelectItem>
             <SelectItem value="Town House">
                Town House

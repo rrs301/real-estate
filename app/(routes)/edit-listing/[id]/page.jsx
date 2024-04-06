@@ -274,7 +274,7 @@ function EditListing({ params }) {
                                     <AlertDialog>
                                         <AlertDialogTrigger asChild>
                                         <Button type="button" disabled={loading} className="">
-                                        {loading ? <Loader className='animate-spin' /> : 'Save & Publish'}
+                                        {loading ? <Loader className='animate-spin' /> : 'Publish'}
                                     </Button>
                                         </AlertDialogTrigger>
                                         <AlertDialogContent>

@@ -5,7 +5,18 @@ import { Bath, BedDouble, MapPin, Ruler, Trash } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react'
-
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import { toast } from 'sonner';
 function UserListing() {
 
     const {user}=useUser();
@@ -20,6 +31,29 @@ function UserListing() {
         .eq('createdBy',user?.primaryEmailAddress.emailAddress);
         setListing(data);
         console.log(data);
+    }
+
+    /**
+     * Delete Property 
+     */
+    const deleteListing=async(id)=>{
+        //Delete Images  Record First
+        await supabase
+        .from('listingImages')
+        .delete()
+        .eq('listing_id',id);
+
+        //Delete Actual Listing
+       
+        const {data,error}=await supabase
+        .from('listing')
+        .delete()
+        .eq('id',id);
+           
+        toast('Record deleted!');
+        GetUserListing();
+            
+        
     }
   return (
     <div>
@@ -66,9 +100,29 @@ function UserListing() {
                         <Link href={'/edit-listing/'+item.id}  className="w-full">
                      <Button size="sm" className="w-full">Edit</Button>
                         </Link>
-                     <Button size="sm" variant="destructive"  className="w-full">
-                        <Trash/>
-                     </Button>
+                   
+                     <AlertDialog>
+                                        <AlertDialogTrigger asChild>
+                                        <Button size="sm" variant="destructive"  className="w-full">
+                                        <Trash/>
+                                    </Button>
+                                   
+                                        </AlertDialogTrigger>
+                                        <AlertDialogContent>
+                                            <AlertDialogHeader>
+                                                <AlertDialogTitle>Ready to Delete?</AlertDialogTitle>
+                                                <AlertDialogDescription>
+                                                   Do you really want to Delete the listing?
+                                                </AlertDialogDescription>
+                                            </AlertDialogHeader>
+                                            <AlertDialogFooter>
+                                                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                                <AlertDialogAction onClick={()=>deleteListing(item.id)} >
+                                                    Continue
+                                                    </AlertDialogAction>
+                                            </AlertDialogFooter>
+                                        </AlertDialogContent>
+                                    </AlertDialog>
                     </div>
                  </div>
              </div>
