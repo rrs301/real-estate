@@ -5,12 +5,12 @@ import Link from 'next/link'
 import React from 'react'
 
 function MarkerListingItem({item,closeHandler}) {
-  return (
+  return item?.listingImages[0]?.url&& (
     <div>
             <div className=' 
             rounded-lg cursor-pointer w-[180px]'>
                 <X onClick={()=>closeHandler()} />
-                    <Image src={item.listingImages[0].url}
+                    <Image src={item?.listingImages[0]?.url}
                     width={800}
                     height={150}
                     className='rounded-lg w-[180px] object-cover h-[120px]'

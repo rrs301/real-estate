@@ -41,10 +41,10 @@ function Listing({listing,handleSearchClick,searchedAddress,
            
         </div>}
         <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-            {listing?.length>0? listing.map((item,index)=>(
+            {listing?.length>0? listing.map((item,index)=>item?.listingImages[0]?.url&&(
                <Link href={'/view-listing/'+item.id}>
                <div className='p-3 hover:border hover:border-primary rounded-lg cursor-pointer'>
-                    <Image src={item.listingImages[0].url}
+                    <Image src={item?.listingImages[0]?.url}
                     width={800}
                     height={150}
                     className='rounded-lg object-cover h-[170px]'

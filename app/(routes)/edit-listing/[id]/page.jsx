@@ -40,7 +40,7 @@ function EditListing({ params }) {
     const [images, setImages] = useState([]);
     const [loading, setLoading] = useState(false);
     useEffect(() => {
-        console.log(user?.imageUrl)
+      
         // console.log(params.split('/')[2]);
         user && verifyUserRecord();
     }, [user]);
