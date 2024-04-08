@@ -62,6 +62,12 @@ function EditListing({ params }) {
 
     const onSubmitHandler = async (formValue) => {
         setLoading(true);
+        if(images?.length==0)
+        {
+            setLoading(false);
+            toast('Please add atleast 1 Image')
+            return ;
+        }
         const { data, error } = await supabase
             .from('listing')
             .update(formValue)
@@ -72,6 +78,7 @@ function EditListing({ params }) {
             console.log(data);
             toast('Listing updated and Published');
             setLoading(false)
+            publishBtnHandler();
         }
         for (const image of images) {
             setLoading(true)
@@ -102,6 +109,7 @@ function EditListing({ params }) {
 
                 if (data) {
                     setLoading(false);
+                    
                 }
                 if (error) {
                     setLoading(false)
@@ -271,7 +279,7 @@ function EditListing({ params }) {
                                         {loading ? <Loader className='animate-spin' /> : 'Save'}
                                     </Button>
 
-                                    <AlertDialog>
+                                    {/* <AlertDialog>
                                         <AlertDialogTrigger asChild>
                                         <Button type="button" disabled={loading} className="">
                                         {loading ? <Loader className='animate-spin' /> : 'Publish'}
@@ -291,7 +299,7 @@ function EditListing({ params }) {
                                                     </AlertDialogAction>
                                             </AlertDialogFooter>
                                         </AlertDialogContent>
-                                    </AlertDialog>
+                                    </AlertDialog> */}
 
 
                                 </div>
