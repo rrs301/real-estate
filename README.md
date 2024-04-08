@@ -1,3 +1,7 @@
+
+![Build   Deploy Full Stack NextJs Real Estate App](https://github.com/rrs301/real-estate/assets/20216436/ad97c156-637e-4af5-9836-fda6fe2506b1)
+
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
